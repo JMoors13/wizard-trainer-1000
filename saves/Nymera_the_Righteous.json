@@ -1,0 +1,53 @@
+{
+  "name": "Nymera",
+  "type": "Righteous",
+  "devotion": {
+    "level": 1,
+    "xp": 3,
+    "required": 5
+  },
+  "whimsy": {
+    "level": 1,
+    "xp": 0,
+    "required": 5
+  },
+  "iniquity": {
+    "level": 1,
+    "xp": 0,
+    "required": 5
+  },
+  "war": 0.0,
+  "days": 5,
+  "inventory": {
+    "scale": 2
+  },
+  "learned_spells": [
+    "laughing hex"
+  ],
+  "spellbook": {
+    "devotion": [
+      {
+        "name": "saenctious might",
+        "level": 1,
+        "chance": 0.7
+      },
+      {
+        "name": "praengenis",
+        "level": 5,
+        "chance": 0.5
+      },
+      {
+        "name": "deiticous fortunes",
+        "level": 10,
+        "chance": 0.3
+      }
+    ],
+    "whimsy": [
+      {
+        "name": "laughing hex",
+        "level": 1,
+        "chance": 1.0
+      }
+    ]
+  }
+}

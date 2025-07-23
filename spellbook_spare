@@ -1,0 +1,20 @@
+        self.spellbook = {
+            'devotion': [
+                {'name': 'saenctious might', 'level': 1, 'chance': 0.7},
+                {'name': 'praengenis', 'level': 5, 'chance': 0.5},
+                {'name': 'deiticous fortunes', 'level': 10, 'chance': 0.3},
+                {'name': 'crucificious maul', 'level': 15, 'chance': 0.1}
+            ],
+            'whimsy': [
+                {'name': 'humarieous cuss', 'level': 1, 'chance': 0.7},
+                {'name': 'bubblaeic exhaling', 'level': 5, 'chance': 0.5},
+                {'name': 'delusionaic halls', 'level': 10, 'chance': 0.3},
+                {'name': 'arommaic disornaetion', 'level': 15, 'chance': 0.1}
+            ],
+            'iniquity': [
+                {'name': 'marronastic depletion', 'level': 1, 'chance': 0.7},
+                {'name': 'binaric removal', 'level': 5, 'chance': 0.5},
+                {'name': 'cruel expulsion', 'level': 10, 'chance': 0.3},
+                {'name': 'cellulatic implosion', 'level': 15, 'chance': 0.1}
+            ]
+        }

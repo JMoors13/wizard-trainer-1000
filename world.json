@@ -1,0 +1,26 @@
+{
+  "morinyite stone": {
+    "crush": {
+      "property": "brittle",
+      "discovered_by": "Bramwick"
+    },
+    "boil": {
+      "property": "energizing",
+      "discovered_by": "Bramwick"
+    },
+    "dry": {
+      "property": null,
+      "discovered_by": "Bramwick"
+    }
+  },
+  "driftstone": {
+    "runemark": {
+      "property": "smoky",
+      "discovered_by": "Bramwick"
+    },
+    "crush": {
+      "property": "slippery",
+      "discovered_by": "Zepharion"
+    }
+  }
+}
