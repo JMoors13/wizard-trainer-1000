@@ -82,40 +82,40 @@ class SpellSystem:
     def perform_experiment(self, item, method):
         wiz = self.wizard
 
-        if item not in wiz.learned_properties:
-            wiz.learned_properties[item] = {}
-
-        if method in wiz.learned_properties[item]:
-            prop = wiz.learned_properties[item][method]
-            if prop:
-                input(
-                    f"🧠 You've already discovered '{prop}' from {method}ing the {item}.")
-            else:
-                input(f"{method.title()}ing the {item} previously revealed nothing.")
-            return
+        # if item not in wiz.learned_properties:
+        #     wiz.learned_properties[item] = {}
 
         # Check if already discovered globally
         world_entry = self.world_properties.get(item, {}).get(method)
+        # If the result is 'null' and has already been discovered
+        if (world_entry["property"] == None) :
+            input(f"{method.title()}ing the {item} yielded no result (as first discovered by {world_entry["discovered_by"]}).")
+            return
+        
         if world_entry:
             prop = world_entry["property"]
             discoverer = world_entry["discovered_by"]
-
-            wiz.learned_properties[item][method] = prop
-            if prop:
-                wiz.known_properties.add(prop)
+            if prop in wiz.known_properties:
+                input(
+                    f"🧠 You've already discovered '{prop}' from {method}ing the {item}.")
+            # else:
+            #     input(f"{method.title()}ing the {item} previously revealed nothing.")
+        
+            else:
+                wiz.known_properties.append(prop)
                 input(f"📜 You rediscovered '{prop}' by {method}ing the {item}.\n"
                       f"🧙 First discovered by: {discoverer}")
                 self.check_for_spell_unlock()
-            else:
-                input(
-                    f"{method.title()}ing the {item} yielded no result (as first discovered by {discoverer}).")
+            # else:
+            #     input(
+            #         f"{method.title()}ing the {item} yielded no result (as first discovered by {discoverer}).")
             return
 
         # First-time discovery (60% chance)
         if random.random() < 0.6:
             prop = random.choice(self.ALL_PROPERTIES)
             wiz.learned_properties[item][method] = prop
-            wiz.known_properties.add(prop)
+            wiz.known_properties.append(prop)
 
             # Save to world
             self.world_properties.setdefault(item, {})[method] = {

@@ -17,37 +17,17 @@
     "required": 5
   },
   "war": 0.0,
-  "days": 5,
+  "days": 16,
   "inventory": {
-    "scale": 2
+    "scale": 2,
+    "flaerrin": 1
   },
   "learned_spells": [
     "laughing hex"
   ],
-  "spellbook": {
-    "devotion": [
-      {
-        "name": "saenctious might",
-        "level": 1,
-        "chance": 0.7
-      },
-      {
-        "name": "praengenis",
-        "level": 5,
-        "chance": 0.5
-      },
-      {
-        "name": "deiticous fortunes",
-        "level": 10,
-        "chance": 0.3
-      }
-    ],
-    "whimsy": [
-      {
-        "name": "laughing hex",
-        "level": 1,
-        "chance": 1.0
-      }
-    ]
-  }
+  "known_properties": [
+    "energizing"
+  ],
+  "unlocked_spells": [],
+  "spellbook": {}
 }

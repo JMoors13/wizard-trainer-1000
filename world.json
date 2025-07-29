@@ -11,6 +11,10 @@
     "dry": {
       "property": null,
       "discovered_by": "Bramwick"
+    },
+    "cut": {
+      "property": "energizing",
+      "discovered_by": "Nymera"
     }
   },
   "driftstone": {

@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import copy
@@ -10,7 +11,7 @@ actions1 = ['read', 'scheme', 'question', 'spell']
 
 class Wizard:
     def __init__(self, name, wtype, devotion=None, whimsy=None, iniquity=None, ap=1, war=0.0, days=0,
-                 learned_spells=None, learned_properties=None, known_properties=None, inventory=None, spellbook=None):
+                 learned_spells=None, unlocked_spells=None, known_properties=None, inventory=None, spellbook=None):
         self.name = name
         self.type = wtype
 
@@ -23,8 +24,9 @@ class Wizard:
         self.days = days
 
         self.learned_spells = learned_spells or []
-        self.learned_properties = learned_properties or {}
-        self.known_properties = set(known_properties or [])
+        self.unlocked_spells = unlocked_spells or []
+        # self.learned_properties = learned_properties or {}
+        self.known_properties = known_properties or []
         # self.unlocked_spells = unlocked_spells or []
         self.inventory = inventory or {}
 
@@ -49,6 +51,8 @@ class Wizard:
             "days": self.days,
             "inventory": self.inventory,
             "learned_spells": self.learned_spells,
+            "known_properties": self.known_properties,
+            "unlocked_spells": self.unlocked_spells,
             "spellbook": self.spellbook
 
         }
@@ -66,6 +70,8 @@ class Wizard:
             days=data.get("days", 0),
             inventory=data.get("inventory", {}),
             learned_spells=data.get("learned_spells", []),
+            known_properties=data.get("known_properties", []),
+            unlocked_spells=data.get("unlocked_spells", []),
             spellbook=data.get("spellbook", {})
 
         )
@@ -442,16 +448,42 @@ class Wizard:
 
     def view_knowledge(self):
         clear_terminal()
-        print(f"📘 Arcane Knowledge of {self.name} the {self.type}:\n")
 
-        print("🔮 Known Properties:")
+        
+        # Show the world properties discovred by other wizards
+        world_file = "world.json"
+        if not os.path.exists(world_file):
+            print("🧪 No ingredients have been discovered yet.")
+            input("Press Enter to return to the menu.")
+            clear_terminal()
+            return
+        
+        with open(world_file, "r") as f:
+            world_data = json.load(f)
+
+        print("Properties discovered by fellow Wizards:\n")
+        for item, methods in world_data.items():
+            print(f"{item.title()}:")
+            for method, entry in methods.items():
+                prop = entry.get("property")
+                discoverer = entry.get("discovered_by", "Unknown")
+                if (discoverer != self.name):
+                    if prop:
+                        print(
+                            f"  🔹 {method.title()} → {prop} (discovered by {discoverer})")
+                    else:
+                        print(
+                            f"  🔸 {method.title()} → No result (discovered by {discoverer})")
+            print()
+
+        print(f"🔮 Properties known to {self.name}:")
         if self.known_properties:
             for prop in sorted(self.known_properties):
                 print(f"  - {prop}")
         else:
             print("  (none discovered yet)")
 
-        print("\n📖 Learned Spells:")
+        print(f"\n📖 Learned Spells by {self.name}:")
         if self.learned_spells:
             for spell in self.learned_spells:
                 print(f"  - {spell.title()}")
